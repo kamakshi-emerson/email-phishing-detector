@@ -1,0 +1,16 @@
+{
+  "name": "Integration - LLMService Fallback on API Failure",
+  "description": "Tests that LLMService.classify_email returns FALLBACK_RESPONSE when the LLM API fails after retries, and that this propagates through EmailPhishingDetectionAgent.analyze_emails.",
+  "test_type": "integration",
+  "input": "A RawEmail with valid content, but LLMService is mocked to raise Exception on all attempts.",
+  "output": "AnalyzeEmailsResponse with classification='inconclusive' and explanation=FALLBACK_RESPONSE.",
+  "success_criteria": [
+    "LLMService.classify_email returns FALLBACK_RESPONSE",
+    "EmailPhishingDetectionAgent.analyze_emails sets classification='inconclusive'",
+    "AuditLogger logs the error"
+  ],
+  "error_scenarios": [
+    "LLMService raises Exception",
+    "Agent handles exception and returns fallback"
+  ]
+}

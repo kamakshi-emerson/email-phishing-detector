@@ -1,0 +1,19 @@
+{
+  "name": "Analyze Single Email - Functional Classification",
+  "description": "Validates that EmailPhishingDetectionAgent.analyze_emails correctly classifies a single valid email as 'not suspicious', 'phishing', or 'suspicious' and returns structured output.",
+  "test_type": "functional",
+  "input": "A list containing one RawEmail instance with a valid RFC822 email string (non-phishing content).",
+  "output": "AnalyzeEmailsResponse with results containing one ClassificationResult, success=True, error=None.",
+  "success_criteria": [
+    "response is not None",
+    "response.success is True",
+    "response.results is a list of length 1",
+    "response.results[0] is a ClassificationResult",
+    "response.results[0].classification in ['phishing', 'suspicious', 'not suspicious', 'inconclusive']",
+    "response.results[0].explanation is a string"
+  ],
+  "error_scenarios": [
+    "ValueError if email content is empty or invalid",
+    "Exception if LLMService fails"
+  ]
+}

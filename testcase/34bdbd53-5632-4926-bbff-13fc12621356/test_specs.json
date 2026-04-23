@@ -1,0 +1,18 @@
+{
+  "name": "Integration - End-to-End Email Analysis Workflow",
+  "description": "Tests the integration of EmailIngestionService, EmailAnalysisEngine, LLMService, OutputFormatter, and AuditLogger in EmailPhishingDetectionAgent.analyze_emails for a batch of emails.",
+  "test_type": "integration",
+  "input": "A list of 2 RawEmail instances: one phishing, one not suspicious.",
+  "output": "AnalyzeEmailsResponse with results for both emails, including correct classification and explanations.",
+  "success_criteria": [
+    "All services are invoked in sequence",
+    "AuditLogger logs rule triggers and errors",
+    "LLMService returns a response for each email",
+    "OutputFormatter produces ClassificationResult for each email",
+    "AnalyzeEmailsResponse.success is True"
+  ],
+  "error_scenarios": [
+    "Exception in any service results in classification='inconclusive' for that email",
+    "AuditLogger fallback logging if primary fails"
+  ]
+}

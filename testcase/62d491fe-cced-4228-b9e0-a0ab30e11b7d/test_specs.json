@@ -1,0 +1,16 @@
+{
+  "name": "Integration - Analyze Emails Endpoint with Invalid Input",
+  "description": "Tests the /analyze endpoint's integration with validation and error handling when given invalid input (empty email list).",
+  "test_type": "integration",
+  "input": "POST request to /analyze with JSON body containing an empty emails list.",
+  "output": "HTTP 422 response with error details and tips.",
+  "success_criteria": [
+    "HTTP status code is 422",
+    "Response JSON contains 'success': False",
+    "Response JSON contains 'error': 'Input validation error'",
+    "Response JSON contains 'tips' with guidance"
+  ],
+  "error_scenarios": [
+    "ValidationError raised and handled by validation_exception_handler"
+  ]
+}

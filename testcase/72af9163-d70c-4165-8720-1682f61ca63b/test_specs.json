@@ -1,0 +1,18 @@
+{
+  "name": "Analyze Emails Endpoint - Functional API Response",
+  "description": "Validates that the /analyze FastAPI endpoint returns the correct AnalyzeEmailsResponse for a valid AnalyzeEmailsRequest payload.",
+  "test_type": "functional",
+  "input": "POST request to /analyze with JSON body containing valid emails (RFC822 format).",
+  "output": "HTTP 200 response with AnalyzeEmailsResponse JSON matching expected schema.",
+  "success_criteria": [
+    "HTTP status code is 200",
+    "Response JSON matches AnalyzeEmailsResponse schema",
+    "results field is present and is a list",
+    "success field is True",
+    "error field is None"
+  ],
+  "error_scenarios": [
+    "ValidationError if input is malformed",
+    "JSONDecodeError if JSON is invalid"
+  ]
+}
